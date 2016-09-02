@@ -1,0 +1,25 @@
+.new-message {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.new-message form {
+  width: 100%;
+  display: flex;
+}
+.message-input {
+  display: inline;
+  width: 100%;
+  border: 1px #bebebe solid !important;
+}
+.new-message button {
+  display: inline;
+}
+
+.scroll {
+  min-height: 100%;
+}
+
+.submit-message {
+  min-width: 15%;
+}

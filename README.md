@@ -5,10 +5,10 @@ Set up instructions:
 
 1- To run starter, run ionic start on the repository:
 
-    ionic start backand-ionic-chat https://github.com/backand/backand-ionic-chat
-    cd backand-ionic-chat
+    ionic start backand-chat-starter https://github.com/backand/backand-chat-starter
+    cd backand-chat-starter
 
-2 - Run with ionic serve command
+2 - Run with ionic serve function
 
     ionic serve
 	
