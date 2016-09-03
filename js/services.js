@@ -1,7 +1,6 @@
 angular.module('starter')
 
 .service('Chats', function($http, Backand) {
-  // Might use a resource here that returns a JSON array
   var self = this;
 
   self.getAll = function() {
@@ -22,6 +21,16 @@ angular.module('starter')
       url: Backand.getApiUrl() + '/1/objects/chats',
       params: {
         id: id
+      }
+    });
+  };
+
+  self.add = function (name) {
+    return $http({
+      method: 'POST',
+      url: Backand.getApiUrl() + '/1/objects/chats',
+      data: {
+        name: name
       }
     });
   }

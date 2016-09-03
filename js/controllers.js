@@ -3,9 +3,25 @@ angular.module('starter')
 
   .controller('ChatsCtrl', function (Chats, Backand) {
     var self = this;
-    Chats.getAll().then(function (response) {
-      self.chats = response.data.data;
-    });
+
+    self.create = function (name) {
+      Chats.add(name).then(function () {
+        self.isCreating = false;
+        init();
+      });
+    };
+
+    self.cancelCreate = function () {
+      self.isCreating = false;
+    };
+
+    function init() {
+      Chats.getAll().then(function (response) {
+        self.chats = response.data.data;
+      });
+    }
+
+    init();
   })
 
   .controller('ChatDetailCtrl', function ($stateParams, Chats, Backand, Messages) {

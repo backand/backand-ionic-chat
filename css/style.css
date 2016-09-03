@@ -2,6 +2,7 @@
   width: 100%;
   position: fixed;
   bottom: 0;
+  border: 0;
 }
 .new-message form {
   width: 100%;
@@ -16,10 +17,36 @@
   display: inline;
 }
 
+.new-message input {
+  margin: 5px;
+  min-height: 45px;
+}
+
 .scroll {
   min-height: 100%;
 }
 
 .submit-message {
-  min-width: 15%;
+  font-size: 10px;
+}
+
+.icon.new-item {
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+  bottom: 13px;
+}
+
+.chat-subheader {
+  top: 44px;
+  position: relative;
+}
+
+.cancel-create {
+  position: absolute;
+  right: 20px;
+  font-size: 14px;
+  bottom: 13px;
+  color: #ef4e3a;
+  z-index: 1;
 }

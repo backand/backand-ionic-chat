@@ -1,10 +1,40 @@
 <ion-view view-title="Chats">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats.chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <h2>{{chat.name}}</h2>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
+    <div ng-if="!chats.isCreating">
+      <div class="bar bar-header">
+        <span ng-click="chats.isCreating = true"><i class='icon ion-plus-round new-item'> New Chat</i></span>
+      </div>
+      <ion-list class="chat-subheader">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats.chats"
+                  type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+          <h2>{{chat.name}}</h2>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div ng-if="chats.isCreating">
+      <ion-content class="padding has-header">
+        <div class="bar bar-header">
+          <span ng-click="chats.cancelCreate()" class="cancel-create">Cancel</span>
+          <h2 class="title">Create Chat</h2>
+        </div>
+        <div class="chat-subheader">
+          <form class="create-form" role="form"
+                ng-submit="chats.create(chats.newChatName)" novalidate>
+            <div class="list">
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Name</span>
+                <input type="text" class="form-control"
+                       ng-model="chats.newChatName"
+                       placeholder="Enter name">
+              </label>
+            </div>
+            <button class="button button-block button-positive" type="submit">Create</button>
+          </form>
+        </div>
+      </ion-content>
+    </div>
+
   </ion-content>
 </ion-view>
