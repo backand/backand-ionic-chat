@@ -26,15 +26,27 @@ angular.module('starter')
 
   .controller('ChatDetailCtrl', function ($stateParams, Chats, Backand, Messages) {
     var self = this;
-    self.messages = [];
-    Backand.on('send_message' + $stateParams.chatId, function (data) {
-      self.messages.push(data[1].Value);
-    });
-    Chats.get($stateParams.chatId).then(function (response) {
-      self.chat = response.data;
-    });
+
     self.sendMessage = function () {
       Messages.post(self.chat.newMessage, $stateParams.chatId);
       self.chat.newMessage = '';
     };
+
+    function init() {
+      Backand.on('send_message' + $stateParams.chatId, function (data) {
+        self.messages.push(data);
+      });
+
+      Chats.get($stateParams.chatId).then(function (response) {
+        self.chat = response.data;
+      });
+
+      Messages.get($stateParams.chatId).then(function (response) {
+        self.messages = response.data.data.map(function (item) {
+          return item.message;
+        });
+      });
+    }
+
+    init();
   });

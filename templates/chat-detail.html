@@ -2,7 +2,7 @@
 <ion-view view-title="{{chatDetail.chat.name}}">
   <ion-content class="padding">
     <div class="messages-area content">
-      <div ng-repeat="message in chatDetail.messages">
+      <div ng-repeat="message in chatDetail.messages track by $index">
         <p>
           {{message}}
         </p>

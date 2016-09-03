@@ -39,18 +39,34 @@ angular.module('starter')
     var self = this;
     self.post = function (message, chatId) {
       return $http ({
-        method: 'GET',
-        url: Backand.getApiUrl() + '/1/objects/action/messages/1',
-        params: {
-          name: 'SendMessage',
-          parameters: {
-            chatId: chatId,
-            message: message
-          }
+        method: 'POST',
+        url: Backand.getApiUrl() + '/1/objects/messages',
+        data: {
+          message: message,
+          chat: chatId
         },
         config: {
           ignoreError: true
         }
       });
-    }
+    };
+
+    self.get = function (chatId) {
+      return $http ({
+        method: 'GET',
+        url: Backand.getApiUrl() + '/1/objects/messages',
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          filter: [
+            {
+              fieldName: 'chat',
+              operator: 'in',
+              value: chatId
+            }
+          ],
+          sort: ''
+        }
+      });
+    };
   });
