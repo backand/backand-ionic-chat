@@ -56,7 +56,7 @@ angular.module('starter')
         method: 'GET',
         url: Backand.getApiUrl() + '/1/objects/messages',
         params: {
-          pageSize: 20,
+          pageSize: 5,
           pageNumber: 1,
           filter: [
             {
@@ -65,7 +65,7 @@ angular.module('starter')
               value: chatId
             }
           ],
-          sort: ''
+          sort: '[{fieldName:\'id\', order:\'desc\'}]'
         }
       });
     };

@@ -24,7 +24,7 @@ angular.module('starter')
     init();
   })
 
-  .controller('ChatDetailCtrl', function ($stateParams, Chats, Backand, Messages) {
+  .controller('ChatDetailCtrl', function ($stateParams, Chats, Backand, Messages, $ionicScrollDelegate) {
     var self = this;
 
     self.sendMessage = function () {
@@ -33,8 +33,10 @@ angular.module('starter')
     };
 
     function init() {
+      $ionicScrollDelegate.scrollBottom(true);
       Backand.on('send_message' + $stateParams.chatId, function (data) {
         self.messages.push(data);
+        $ionicScrollDelegate.scrollBottom(true);
       });
 
       Chats.get($stateParams.chatId).then(function (response) {

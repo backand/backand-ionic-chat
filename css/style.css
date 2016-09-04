@@ -1,12 +1,24 @@
-.new-message {
+.chat-detail-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.messages-area {
   width: 100%;
-  position: fixed;
+  max-height: 93%;
+}
+.new-message {
+  order: 2;
+  width: 100%;
+  position: relative;
   bottom: 0;
+  border: 0;
+}
+.new-message label {
+  width: 100%;
   border: 0;
 }
 .new-message form {
   width: 100%;
-  display: flex;
 }
 .message-input {
   display: inline;
@@ -15,11 +27,7 @@
 }
 .new-message button {
   display: inline;
-}
-
-.new-message input {
-  margin: 5px;
-  min-height: 45px;
+  width: 50px;
 }
 
 .scroll {
@@ -27,13 +35,14 @@
 }
 
 .submit-message {
-  font-size: 10px;
+  font-size: 12px !important;
 }
 
 .icon.new-item {
   position: absolute;
   right: 20px;
-  font-size: 20px;
+  width: 70px;
+  font-size: 12px;
   bottom: 13px;
 }
 

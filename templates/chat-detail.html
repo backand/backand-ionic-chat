@@ -1,18 +1,16 @@
-
 <ion-view view-title="{{chatDetail.chat.name}}">
-  <ion-content class="padding">
-    <div class="messages-area content">
-      <div ng-repeat="message in chatDetail.messages track by $index">
-        <p>
-          {{message}}
-        </p>
-      </div>
+  <ion-content class="padding chat-detail-container" scroll="y">
+    <div ng-repeat="message in chatDetail.messages track by $index">
+      {{message}}
     </div>
-      <form ng-submit="chatDetail.sendMessage()">
-        <label class="item item-input new-message">
-          <input type="text" ng-model="chatDetail.chat.newMessage" class="message-input text-input form-control">
-          <button class="submit-message button" type="submit">Send</button>
-        </label>
-      </form>
   </ion-content>
+
+  <ion-footer-bar keyboard-attach class="bar-stable item-input-inset new-message">
+    <form ng-submit="chatDetail.sendMessage()">
+      <label class="item-input-wrapper">
+        <input type="text" ng-model="chatDetail.chat.newMessage" class="">
+        <button class="button button-clear submit-message" type="submit">Send</button>
+      </label>
+    </form>
+  </ion-footer-bar>
 </ion-view>
