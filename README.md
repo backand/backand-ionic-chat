@@ -17,7 +17,7 @@ In order to run the app on another platform (Android/iOS):
 	cordova platform add <platform>
 	ionic run <platform>
 
-Instructions for setting up your own realtime Backand application:
+##Setting up your own realtime Backand application
 
 1 - Create a free personal application at backand.com
 
