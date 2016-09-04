@@ -21,25 +21,69 @@ Instructions for setting up your own realtime Backand application:
 
 1 - Create a free personal application at backand.com
 
-2 - Add the following object to your Backand model:
-	{
-		"name": "chats",
-		"fields": {
-		  "name": {
-			"type": "string"
-		  }
-		}
-	}
+2 - Set the following Backand DB model:
+    [
+      {
+        "name": "users",
+        "fields": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "chats": {
+            "object": "chats"
+          }
+        }
+      },
+      {
+        "name": "chats",
+        "fields": {
+          "participants": {
+            "collection": "users",
+            "via": "chats"
+          },
+          "messages": {
+            "collection": "messages",
+            "via": "chat"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "messages",
+        "fields": {
+          "message": {
+            "type": "string"
+          },
+          "chat": {
+            "object": "chats"
+          }
+        }
+      }
+    ]
 	
-3 - Add an on demand server action named SendMessage, use the following code inside the function scope:
+3 - On the messages object, add a server side action that triggers after the create event. Call it SendMessage and use the following code:
 
-	socket.emitAll("send_message" + parameters.chatId, parameters);
+    'use strict';
+    function backandCallback(userInput, dbRow, parameters, userProfile) {
+        socket.emitAll("send_message" + userInput.chat, userInput.message);
+      return {};
+    }
 	
 4 - Modify the following code on www/js/app.js with your Backand app name, sign up token and anonymous token:
 
-	BackandProvider.setAppName('ionicchatstarter');
-    BackandProvider.setSignUpToken('aa3b4fbb-cfa8-4deb-8ecc-4b737aff9fde');
-    BackandProvider.setAnonymousToken('4dbe52c1-0b31-49a2-ab44-39f9b4a095c3');
+      BackandProvider.setAppName('Your-App-Name');
+      
+      BackandProvider.setSignUpToken('Your-SignUp-Token');
+      
+      BackandProvider.setAnonymousToken('Your-Anonymous-Token');
 	
 5 - Enjoy your custom Real Time app! You can add whatever functionality you want both to the client or the server!
 
