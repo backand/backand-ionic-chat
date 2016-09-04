@@ -74,7 +74,7 @@ Instructions for setting up your own realtime Backand application:
 
     'use strict';
     function backandCallback(userInput, dbRow, parameters, userProfile) {
-        socket.emitAll("send_message" + userInput.chat, userInput.message);
+        socket.emitAll("send_message" + dbRow.chat, dbRow.message);
       return {};
     }
 	
