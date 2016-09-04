@@ -22,7 +22,8 @@ Instructions for setting up your own realtime Backand application:
 1 - Create a free personal application at backand.com
 
 2 - Set the following Backand DB model:
-    ```[
+    ```json
+    [
       {
         "name": "users",
         "fields": {
