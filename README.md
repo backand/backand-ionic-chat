@@ -22,7 +22,7 @@ Instructions for setting up your own realtime Backand application:
 1 - Create a free personal application at backand.com
 
 2 - Set the following Backand DB model:
-    [
+    ```[
       {
         "name": "users",
         "fields": {
@@ -67,7 +67,7 @@ Instructions for setting up your own realtime Backand application:
           }
         }
       }
-    ]
+    ]```
 	
 3 - On the messages object, add a server side action that triggers after the create event. Call it SendMessage and use the following code:
 
