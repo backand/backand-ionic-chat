@@ -27,10 +27,16 @@ angular.module('starter', ['ionic', 'backand'])
 
   .config(function($stateProvider, $urlRouterProvider, BackandProvider, $ionicConfigProvider) {
 
+    // Backand App Configuration
+    // Replace the data according to your app details
     BackandProvider.setAppName('ionicchatstarter');
     BackandProvider.setSignUpToken('aa3b4fbb-cfa8-4deb-8ecc-4b737aff9fde');
     BackandProvider.setAnonymousToken('4dbe52c1-0b31-49a2-ab44-39f9b4a095c3');
+
+    // Enable connection to backand real time
     BackandProvider.runSocket(true);
+
+
     $ionicConfigProvider.tabs.position('bottom');
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -45,8 +51,6 @@ angular.module('starter', ['ionic', 'backand'])
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-
-  // Each tab has its own nav history stack:
 
   .state('tab.chats', {
       url: '/chats',

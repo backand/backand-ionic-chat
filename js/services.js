@@ -37,6 +37,8 @@ angular.module('starter')
 })
 .service('Messages', function ($http, Backand) {
     var self = this;
+
+    // Triggers the SendMessage action on the Backand app
     self.post = function (message, chatId) {
       return $http ({
         method: 'POST',
@@ -44,13 +46,12 @@ angular.module('starter')
         data: {
           message: message,
           chat: chatId
-        },
-        config: {
-          ignoreError: true
         }
       });
     };
 
+    // Uses pagination to get the last 5 messages
+    // Uses filter to get only our current chat's messages
     self.get = function (chatId) {
       return $http ({
         method: 'GET',
