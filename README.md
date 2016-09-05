@@ -1,12 +1,12 @@
 # backand-ionic-chat
-A sample app in Ionic that demonstrates the Real Time feature in Backand
+###A sample app in Ionic that demonstrates the Real Time feature in Backand
 
-Set up instructions:
+##Set up instructions:
 
 1- To run starter, run ionic start on the repository:
 
-    ionic start backand-chat-starter https://github.com/backand/backand-chat-starter
-    cd backand-chat-starter
+    ionic start backand-ionic-chat https://github.com/backand/backand-ionic-chat
+    cd backand-ionic-chat
 
 2 - Run with ionic serve function
 
@@ -17,7 +17,7 @@ In order to run the app on another platform (Android/iOS):
 	cordova platform add <platform>
 	ionic run <platform>
 
-Instructions for setting up your own realtime Backand application:
+##Setting up your own realtime Backand application
 
 1 - Create a free personal application at backand.com
 
@@ -74,7 +74,7 @@ Instructions for setting up your own realtime Backand application:
 
     'use strict';
     function backandCallback(userInput, dbRow, parameters, userProfile) {
-        socket.emitAll("send_message" + userInput.chat, userInput.message);
+        socket.emitAll("send_message" + dbRow.chat, dbRow.message);
       return {};
     }
 	
