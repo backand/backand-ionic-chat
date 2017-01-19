@@ -1,73 +1,46 @@
 angular.module('starter')
 
-.service('Chats', function($http, Backand) {
-  var self = this;
+  .service('Chats', function(Backand) {
+    var self = this,
+        objectName = 'chats';
 
-  self.getAll = function() {
-    return $http({
-      method: 'GET',
-      url: Backand.getApiUrl() + '/1/objects/chats',
-      params: {
-        pageSize: 20,
-        pageNumber: 1,
-        filter: [],
-        sort: ''
-      }
-    });
-  };
-  self.get = function(id) {
-    return $http({
-      method: 'GET',
-      url: Backand.getApiUrl() + '/1/objects/chats',
-      params: {
-        id: id
-      }
-    });
-  };
+    self.getAll = function() {
+      var params ={
+        sort: Backand.helpers.sort.create('id', Backand.helpers.sort.orders.desc)
+      };
+      return Backand.object.getList(objectName, params);
+    };
 
-  self.add = function (name) {
-    return $http({
-      method: 'POST',
-      url: Backand.getApiUrl() + '/1/objects/chats',
-      data: {
-        name: name
-      }
-    });
-  }
-})
-.service('Messages', function ($http, Backand) {
-    var self = this;
+    self.get = function(id) {
+      return Backand.object.getOne(objectName,id);
+    };
+
+    self.add = function (name) {
+      return Backand.object.create(objectName, {name: name});
+    };
+  })
+
+  .service('Messages', function (Backand) {
+    var self = this,
+        objectName = 'messages';
 
     // Triggers the SendMessage action on the Backand app
     self.post = function (message, chatId) {
-      return $http ({
-        method: 'POST',
-        url: Backand.getApiUrl() + '/1/objects/messages',
-        data: {
-          message: message,
-          chat: chatId
-        }
-      });
+      return Backand.object.create(objectName, {message: message, chat: chatId});
     };
 
     // Uses pagination to get the last 5 messages
     // Uses filter to get only our current chat's messages
     self.get = function (chatId) {
-      return $http ({
-        method: 'GET',
-        url: Backand.getApiUrl() + '/1/objects/messages',
-        params: {
-          pageSize: 5,
-          pageNumber: 1,
-          filter: [
-            {
-              fieldName: 'chat',
-              operator: 'in',
-              value: chatId
-            }
-          ],
-          sort: '[{fieldName:\'id\', order:\'desc\'}]'
-        }
-      });
+
+      var params = {
+        sort: Backand.helpers.sort.create('id', Backand.helpers.sort.orders.desc),
+        exclude: Backand.helpers.exclude.options.all,
+        filter: Backand.helpers.filter.create('chat', Backand.helpers.filter.operators.relation.in, chatId),
+        pageSize: 5,
+        pageNumber: 1
+      };
+
+      return Backand.object.getList(objectName, params);
     };
   });
