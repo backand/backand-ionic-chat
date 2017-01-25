@@ -17,6 +17,10 @@ $ npm i -S @backand/angular1-sdk
 ```bash
 $ yarn add @backand/angular1-sdk
 ```
+- bower:
+```bash
+$ bower install backand-angular1-sdk
+```
 - download/clone:
 ```bash
 $ git clone https://github.com/backand/angular1-sdk.git
