@@ -3,19 +3,24 @@
 
 ##Set up instructions:
 
-1- To run starter, run ionic start on the repository:
+1 - To run starter, run ionic start on the repository:
 
     ionic start backand-ionic-chat https://github.com/backand/backand-ionic-chat
     cd backand-ionic-chat
 
-2 - Run with ionic serve function
+2 - Installation
+
+    bower install socket.io-client#1.4.5
+    bower install backand-angular1-sdk
+
+3 - Run with ionic serve function
 
     ionic serve
 	
 In order to run the app on another platform (Android/iOS):
 
-	cordova platform add <platform>
-	ionic run <platform>
+    cordova platform add <platform>
+    ionic run <platform>
 
 ##Setting up your own realtime Backand application
 
