@@ -1,7 +1,7 @@
 angular.module('starter')
 
 
-  .controller('ChatsCtrl', function (Chats, Backand) {
+  .controller('ChatsCtrl', function (Chats) {
     var self = this;
 
     // Add chat and refresh the list
@@ -19,7 +19,7 @@ angular.module('starter')
     // Load the chats from the server
     function init() {
       Chats.getAll().then(function (response) {
-        self.chats = response.data.data;
+        self.chats = response.data;
       });
     }
 
@@ -37,6 +37,15 @@ angular.module('starter')
       self.chat.newMessage = '';
     };
 
+    // Get the latest messages from the server
+    self.getMessages = function(){
+      Messages.get($stateParams.chatId).then(function (response) {
+        self.messages = response.data.map(function (item) {
+          return item.message;
+        });
+      });
+    }
+
     function init() {
       // Scroll chats to bottom so the user can see the latest messages
       $ionicScrollDelegate.scrollBottom(true);
@@ -44,8 +53,8 @@ angular.module('starter')
       // Listen to real time events for the current chat, and when the event triggers run the callback that adds a new message
       // For more info about real time events in Backand: http://docs.backand.com/en/latest/apidocs/realtime/index.html
       Backand.on('send_message' + $stateParams.chatId, function (data) {
-        self.messages.push(data);
-        $ionicScrollDelegate.scrollBottom(true);
+        self.getMessages();
+        //$ionicScrollDelegate.scrollBottom(true);
       });
 
       // Get the chat from the server to get its metadata
@@ -53,12 +62,8 @@ angular.module('starter')
         self.chat = response.data;
       });
 
-      // Get the latest messages from the server
-      Messages.get($stateParams.chatId).then(function (response) {
-        self.messages = response.data.data.map(function (item) {
-          return item.message;
-        });
-      });
+      self.getMessages();
+
     }
 
     init();

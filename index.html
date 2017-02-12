@@ -18,9 +18,16 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <script src="https://api.backand.com:4000/socket.io/socket.io.js"></script>
+    <!-- Backand Socket.io Client -->
+    <script src="lib/socket.io-client/socket.io.js"></script>
+    <!--<script src="https://cdn.backand.net/socket.io/1.4.5/socket.io.js"></script>-->
+
     <!-- Backand SDK for Angular -->
-    <script src="http://cdn.backand.net/backand/dist/1.8.6/backand.min.js"></script>
+    <script src="lib/backand-vanilla-sdk/dist/backand.js"></script>
+    <script src="lib/backand-angular1-sdk/dist/backand.provider.js"></script>
+
+    <!--<script src="http://cdn.backand.net/vanilla-sdk/1.0.5/backand.js"></script>-->
+    <!--<script src="http://cdn.backand.net/angular1-sdk/1.9.2/backand.provider.js"></script>-->
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
