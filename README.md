@@ -1,7 +1,7 @@
 # backand-ionic-chat
-###A sample app in Ionic that demonstrates the Real Time feature in Backand
+### A sample app in Ionic that demonstrates the Real Time feature in Backand
 
-##Set up instructions:
+## Set up instructions:
 
 1 - To run starter, run ionic start on the repository:
 
@@ -22,7 +22,7 @@ In order to run the app on another platform (Android/iOS):
     cordova platform add <platform>
     ionic run <platform>
 
-##Setting up your own realtime Backand application
+## Setting up your own realtime Backand application
 
 1 - Create a free personal application at backand.com
 
